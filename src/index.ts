@@ -8,6 +8,7 @@ import {
   CurrentMember,
   Epic,
   EpicChange,
+  EpicSlim,
   File,
   FileChange,
   ID,
@@ -17,6 +18,8 @@ import {
   LinkedFile,
   LinkedFileChange,
   Member,
+  Milestone,
+  MilestoneUpdate,
   Project,
   ProjectChange,
   RequestFactory,
@@ -413,6 +416,33 @@ class Client<RequestType, ResponseType> {
   /** */
   deleteIteration(iterationID: ID): Promise<Record<string, unknown>> {
     return this.deleteResource(`iterations/${iterationID}`);
+  }
+
+  /** */
+  listMilestones(): Promise<Array<Milestone>> {
+    return this.listResource(`milestones`);
+  }
+
+  listMilestoneEpics(milestoneID: ID): Promise<Array<EpicSlim>> {
+    return this.listResource(`milestones/${milestoneID}/epics`);
+  }
+
+  /** */
+  createMilestone(params: MilestoneUpdate): Promise<Milestone> {
+    return this.createResource(`milestones`, params);
+  }
+
+  /** */
+  getMilestone(milestoneID: ID): Promise<Milestone> {
+    return this.getResource(`milestones/${milestoneID}`);
+  }
+
+  /** */
+  updateMilestone(
+    milestoneID: ID,
+    params: MilestoneUpdate,
+  ): Promise<Milestone> {
+    return this.updateResource(`milestones/${milestoneID}`, params);
   }
 }
 

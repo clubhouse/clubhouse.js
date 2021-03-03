@@ -420,6 +420,38 @@ export type StorySearchResult = {
 
 /* Epic */
 
+export type EpicSlim = {
+  id: number;
+  app_url: string;
+  archived: boolean;
+  completed: boolean;
+  completed_at: Date | null;
+  completed_at_override: Date | null;
+  created_at: Date | null;
+  deadline: Date | null;
+  entity_type: string;
+  epic_state_id: number;
+  external_id: string | null;
+  follower_ids: Array<ID>;
+  group_mention_ids: Array<ID>;
+  labels: Array<Label>;
+  member_mention_ids: Array<ID>;
+  mention_ids: Array<ID>;
+  milestone_id: number | null;
+  name: string;
+  owner_ids: Array<ID>;
+  planned_start_date: Date | null;
+  position: number;
+  project_ids: Array<number>;
+  requested_by_id: ID;
+  started: boolean;
+  started_at: Date | null;
+  started_at_override: Date | null;
+  state: string;
+  stats: EpicStats;
+  updated_at: Date | null;
+};
+
 export type EpicStates = 'to do' | 'in progress' | 'done';
 
 export type EpicStats = {
@@ -540,12 +572,60 @@ export type StoryLinkChange = {
 
 /* Milestones */
 
+export type Category = {
+  id: ID;
+  archived: boolean;
+  color: string | null;
+  created_at: Date;
+  entity_type: string;
+  external_id: string | null;
+  name: string;
+  type: string;
+  updated_at: string;
+};
+
+export type CreateCategoryParams = {
+  color: string;
+  external_id: string;
+  name: string;
+};
+
 export type Milestone = {
   id: ID;
+  app_url: string;
+  categories: Array<Category>;
+  completed: boolean;
+  completed_at: Date | null;
+  completed_at_override: Date | null;
+  created_at: Date;
+  description: string;
+  entity_type: string;
+  name: string;
+  position: number;
+  started: boolean;
+  started_at: Date | null;
+  started_at_override: Date | null;
+  state: string;
+  stats: MilestoneStats;
+  updated_at: Date;
+};
+
+export type MilestoneStateTypes = 'done' | 'in progress' | 'to do';
+
+export type MilestoneStats = {
+  average_cycle_time: number;
+  average_lead_time: number;
 };
 
 export type MilestoneUpdate = {
+  after_id: number;
+  before_id: number;
+  categories: Array<CreateCategoryParams>;
+  completed_at_override: Date | null;
+  description: string;
   name: string;
+  started_at_override: Date | null;
+  state: MilestoneStateTypes;
 };
 
 /* Fact aka History */
