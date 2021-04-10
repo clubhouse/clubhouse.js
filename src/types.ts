@@ -376,13 +376,14 @@ export type Story = {
   position: number;
   previous_iteration_ids: Array<number>;
   project_id: number;
+  pull_requests: Array<PullRequest>;
   requested_by_id: ID;
   started: boolean;
   started_at: string | null;
   started_at_override: string | null;
   story_type: StoryType;
   tasks: Array<Task>;
-  tasks_id: Array<ID>;
+  task_ids: Array<ID>;
   updated_at: string | null;
   workflow_state_id: number;
 };
@@ -609,4 +610,16 @@ export type IterationChange = {
   start_date?: string;
   end_date?: string;
   follower_ids?: Array<ID>;
+};
+
+export type Repository = {
+  created_ad: string;
+  entity_type: string;
+  external_id?: string | null;
+  full_name: string;
+  id: number;
+  name: string;
+  type: string;
+  updated_at: string | null;
+  url: string;
 };

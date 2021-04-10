@@ -19,6 +19,7 @@ import {
   Member,
   Project,
   ProjectChange,
+  Repository,
   RequestFactory,
   RequestPerformer,
   ResponseParser,
@@ -413,6 +414,16 @@ class Client<RequestType, ResponseType> {
   /** */
   deleteIteration(iterationID: ID): Promise<Record<string, unknown>> {
     return this.deleteResource(`iterations/${iterationID}`);
+  }
+
+  /** */
+  listRepositories(): Promise<Array<Repository>> {
+    return this.listResource(`repositories`);
+  }
+
+  /** */
+  getRepository(repositoryID: ID): Promise<Repository> {
+    return this.getResource(`repositories/${repositoryID}`);
   }
 }
 
